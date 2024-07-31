@@ -1,5 +1,7 @@
 #include "screen.h"
 
+// 1. in Private, "const string::size_type TOP_LEFT = 0" - const before a variable: defines constant value that cannot be changed after initialization
+
 // Screen's constructor
 Screen::Screen(string::size_type height, string::size_type width, char bkground):
 	height_{height},// initialises height_ with height
@@ -82,7 +84,7 @@ void Screen::set( char ch )
 	return;
 }
 
-void Screen::set( const string& s )
+void Screen::set( const string& s ) // 2. const as a constant function parameter: defines which the variable is passed by reference and it's value cannot be changed by the function
 {   // write string beginning at current cursor_ position
 	auto space = remainingSpace();
 	auto len = s.size();
@@ -132,7 +134,7 @@ void Screen::reSize( string::size_type h, string::size_type w, char bkground )
 		string::size_type offset = w * ix; // row position
 		for ( string::size_type iy = 0; iy < width_; ++iy )
 			// for each column, assign the old value
-			_screen.at(offset + iy) = local[ local_pos++ ];
+			_screen.at(offset + iy) = local[ local_pos++ ]; // .at() method returns a reference to the character at specified position on the screen
 	}
 
 	height_ = h;
@@ -155,7 +157,7 @@ void Screen::display() const
 	return;
 }
 
-bool Screen::checkRange( string::size_type row, string::size_type col ) const
+bool Screen::checkRange( string::size_type row, string::size_type col ) const // 3. const after member functions: creates a read-only function that cannot modify the state of the object 
 {   // validate coordinates
 	if (row < 1 || row > height_ || col < 1 || col > width_)
 	{
