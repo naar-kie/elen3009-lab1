@@ -87,3 +87,6 @@ private:
 
 #endif
 
+//-------------------------------------Exercise 4.7--------------------------------
+// Internal representation of the Screen class is needed in order to implement the drawSqaure() function because we need access to control private member variables such as cursor in order to draw the square.
+// This function should not form part of the responsibilities of a Screen object, because the screen should only render the screen (separation of duties/ layers)
