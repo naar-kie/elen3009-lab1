@@ -34,9 +34,10 @@ void Screen::back()
 
 void Screen::up()
 {   // move cursor_ up one row of screen
-	// do not wrap around
-	if ( row() == 1 ) // at top?
-		cerr << "Screen::up - Cannot wrap around in a vertical direction" << endl;
+	// can wrap around to bottom
+	if ( row() == 1 ){ // at top?
+		cursor_ = _screen.size() - width_ + cursor_;
+	}
 	else
 		cursor_ -= width_;
 
@@ -45,9 +46,10 @@ void Screen::up()
 
 void Screen::down()
 {   // move cursor_ down one row of screen
-	// do not wrap around
-	if ( row() == height_ ) // at bottom?
-		cerr << "Screen::down - Cannot wrap around in a vertical direction" << endl;
+	// can wrap around to top -> could implement to move left by adding +1 and TOP_LEFT
+	if ( row() == height_){
+		cursor_ = width_ - (_screen.size() - cursor_);
+	}
 	else
 		cursor_ += width_;
 
