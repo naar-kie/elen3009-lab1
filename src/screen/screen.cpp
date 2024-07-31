@@ -198,3 +198,49 @@ string::size_type Screen::row() const
 	return (cursor_ + width_)/width_;
 }
 
+void Screen::drawSquare( string::size_type row, string::size_type col, const int length_ )
+{   // move cursor_ to absolute position
+	// valid screen position?
+	if ( checkRange( row, col ) && checkRange(row + length_ -1, col + length_ -1)) // lazy DRY proper error checking mechanism, lol
+	{
+		// row location
+		auto row_loc = (row-1) * width_;
+		cursor_ = row_loc + col - 1;
+		for (int i = 0; i < length_; i++){ // top print
+			_screen[cursor_] = '*';
+			cursor_++;
+			/* code */
+		}
+		if(length_> 1){
+			row_loc = (row+length_-2) * width_;
+			cursor_ = row_loc + col - 1;
+			for (int i = 0; i < length_; i++){ // bottom print
+				_screen[cursor_] = '*';
+				cursor_++;
+			}
+
+			row_loc = (row) * width_;
+			cursor_ = row_loc + col - 1;
+			//for(int i = 0; i< length_; i++){
+				for(int j = 0; j< length_; j++){ // side prints
+					_screen[cursor_] = '*';
+					cursor_+=length_-1;
+					_screen[cursor_] = '*';
+					//cursor_-=length_;
+
+					row_loc = (row+ j) * width_;
+					cursor_ = row_loc + col - 1;
+				}
+			//}
+		}
+
+		//	row_loc = (row-1) * width_;
+			cursor_ = 0;
+
+
+
+
+	}
+
+	return;
+}
