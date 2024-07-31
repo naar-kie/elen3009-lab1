@@ -90,3 +90,7 @@ private:
 //-------------------------------------Exercise 4.7--------------------------------
 // Internal representation of the Screen class is needed in order to implement the drawSqaure() function because we need access to control private member variables such as cursor in order to draw the square.
 // This function should not form part of the responsibilities of a Screen object, because the screen should only render the screen (separation of duties/ layers)
+
+//-------------------------------------Exercise 4.8--------------------------------
+// A more intuitive approach might be to implement a 2D array, as this makes the code structure easier to understand and allows new developers to modify the code more easily due to its widespread use across programming languages. This also makes the positioning system more intuitive.
+// A class's interface should remain unchanged because altering it might disrupt the functionality of existing code. The interface and core functionality should stay consistent to ensure compatibility, while changing the implementation can lead to improved functionality, better performance, or a more straightforward framework to comprehend
